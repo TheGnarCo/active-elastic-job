@@ -28,7 +28,7 @@ module ActiveJob
       class SerializedJobTooBig < Error
         def initialize(serialized_job)
           super(<<-MSG)
-            The job contains #{serialized_job.bytesize} bytes in its serialzed form,
+            The job contains #{serialized_job.bytesize} bytes in its serialized form,
             which exceeds the allowed maximum of #{MAX_MESSAGE_SIZE} bytes imposed by Amazon SQS.
           MSG
         end
@@ -125,7 +125,7 @@ module ActiveJob
         private
 
         def aws_client_verifies_md5_digests?
-          Gem::Version.new(Aws::VERSION) >= Gem::Version.new('2.2.19'.freeze)
+          Gem::Version.new(Aws::CORE_GEM_VERSION) >= Gem::Version.new('2.2.19'.freeze)
         end
 
         def build_message(queue_name, serialized_job, timestamp)
